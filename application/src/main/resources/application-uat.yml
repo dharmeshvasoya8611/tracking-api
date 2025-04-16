@@ -1,0 +1,19 @@
+environment:
+  url:
+    prefix: UAT
+spring:
+  application:
+    name: Tracking API Demo
+server:
+  port: 8080
+  servlet:
+    context-path: /tracking
+springdoc:
+  swagger-ui:
+    url: /tracking/v3/api-docs
+    config-url: /tracking/v3/api-docs/swagger-config
+logging:
+  level:
+    ROOT: INFO
+    web.servlet.DispatcherServlet: INFO
+    org.springframework: INFO

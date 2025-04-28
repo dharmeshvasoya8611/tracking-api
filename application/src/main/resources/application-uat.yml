@@ -5,7 +5,7 @@ spring:
   application:
     name: Tracking API Demo
 server:
-  port: 8080
+  port: 80
   servlet:
     context-path: /tracking
 springdoc:

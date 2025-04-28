@@ -31,7 +31,7 @@ public class TrackingApiControllerImpl implements TrackingApi {
     }
 
     @Override
-    public ResponseEntity getTrackingNumber(
+    public ResponseEntity nextTrackingNumber(
             @NotNull @Valid @RequestParam(value = "origin_country_id", name = "origin_country_id")
                     String originCountryId,
             @NotNull
@@ -48,10 +48,11 @@ public class TrackingApiControllerImpl implements TrackingApi {
             @NotNull @Valid @RequestParam(value = "customer_slug", name = "customer_slug")
                     String customerSlug) {
 
+        LOG.debug("nextTrackingNumber() started");
         try {
 
             ValidationMessage message =
-                    webValidator.validateGetTrackingNumber(
+                    webValidator.validateNextTrackingNumber(
                             originCountryId,
                             destinationCountryId,
                             weight,
@@ -61,13 +62,14 @@ public class TrackingApiControllerImpl implements TrackingApi {
                             customerSlug);
 
             if (!message.isValid()) {
+                LOG.debug("nextTrackingNumber() invalid request");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body(webConverter.toJSONString(webConverter.toResponseError(message)));
             }
 
             RestTrackingNumber restTrackingNumber =
                     webConverter.toRestTrackingNumber(
-                            trackingService.getTrackingNumber(
+                            trackingService.nextTrackingNumber(
                                     originCountryId,
                                     destinationCountryId,
                                     weight,
@@ -77,14 +79,18 @@ public class TrackingApiControllerImpl implements TrackingApi {
                                     customerSlug));
 
             if (restTrackingNumber != null) {
+                LOG.debug("nextTrackingNumber() success");
                 return ResponseEntity.ok(restTrackingNumber);
             } else {
+                LOG.debug("nextTrackingNumber() failed");
                 return ResponseEntity.notFound().build();
             }
 
         } catch (Exception e) {
-            LOG.error(e);
+            LOG.error("nextTrackingNumber() error:" + e.getMessage());
             return ResponseEntity.internalServerError().build();
+        } finally {
+            LOG.debug("nextTrackingNumber() ended");
         }
     }
 }

@@ -8,9 +8,9 @@ info:
   version: 1.0.0
 
 paths:
-  "/api/get-tracking-number":
+  "/api/next-tracking-number":
     get:
-      operationId: getTrackingNumber
+      operationId: nextTrackingNumber
       tags: ["Tracking"]
       parameters:
         - in: query

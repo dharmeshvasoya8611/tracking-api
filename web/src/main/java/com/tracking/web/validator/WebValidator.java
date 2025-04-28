@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WebValidator {
 
-    public ValidationMessage validateGetTrackingNumber(
+    public ValidationMessage validateNextTrackingNumber(
             String originCountryId,
             String destinationCountryId,
             Double weight,

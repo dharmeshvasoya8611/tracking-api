@@ -60,7 +60,7 @@ class TrackingApiControllerTest {
     void withoutParameter() throws Exception {
 
         Mockito.when(
-                        trackingService.getTrackingNumber(
+                        trackingService.nextTrackingNumber(
                                 anyString(),
                                 anyString(),
                                 anyDouble(),
@@ -71,7 +71,7 @@ class TrackingApiControllerTest {
                 .thenReturn(webMock.mockTrackingNumber());
 
         RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.get("/api/get-tracking-number")
+                MockMvcRequestBuilders.get("/api/next-tracking-number")
                         .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -83,7 +83,7 @@ class TrackingApiControllerTest {
     void withParameter() throws Exception {
 
         Mockito.when(
-                        trackingService.getTrackingNumber(
+                        trackingService.nextTrackingNumber(
                                 anyString(),
                                 anyString(),
                                 anyDouble(),
@@ -94,7 +94,7 @@ class TrackingApiControllerTest {
                 .thenReturn(webMock.mockTrackingNumber());
 
         RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.get("/api/get-tracking-number")
+                MockMvcRequestBuilders.get("/api/next-tracking-number")
                         .accept(MediaType.APPLICATION_JSON)
                         .queryParams(webMock.getqueryParamsToGenerateTrackingNumber());
 

@@ -1,6 +1,9 @@
 package com.tracking.web.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tracking.service.TrackingService;
+import com.tracking.service.exception.InvalidTrackingNumberException;
+import com.tracking.service.exception.TrackingNumberException;
 import com.tracking.web.api.TrackingApi;
 import com.tracking.web.model.RestTrackingNumber;
 import com.tracking.web.model.ValidationMessage;
@@ -86,8 +89,11 @@ public class TrackingApiControllerImpl implements TrackingApi {
                 return ResponseEntity.notFound().build();
             }
 
-        } catch (Exception e) {
-            LOG.error("nextTrackingNumber() error:" + e.getMessage());
+        } catch (JsonProcessingException jsonProcessingException) {
+            LOG.error("nextTrackingNumber() error:" + jsonProcessingException.getMessage());
+            return ResponseEntity.internalServerError().build();
+        } catch (TrackingNumberException | InvalidTrackingNumberException exception) {
+            LOG.error("nextTrackingNumber() error:" + exception.getMessage());
             return ResponseEntity.internalServerError().build();
         } finally {
             LOG.debug("nextTrackingNumber() ended");

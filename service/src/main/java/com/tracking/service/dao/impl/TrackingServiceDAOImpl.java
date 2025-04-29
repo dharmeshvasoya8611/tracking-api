@@ -1,6 +1,8 @@
 package com.tracking.service.dao.impl;
 
 import com.tracking.service.dao.TrackingServiceDAO;
+import com.tracking.service.exception.InvalidTrackingNumberException;
+import com.tracking.service.exception.TrackingNumberException;
 import com.tracking.service.model.TrackingNumber;
 import com.tracking.service.util.ServiceUtil;
 import java.util.Date;
@@ -24,10 +26,13 @@ public class TrackingServiceDAOImpl implements TrackingServiceDAO {
             String createdAt,
             String customerId,
             String customerName,
-            String customerSlug) {
+            String customerSlug)
+            throws TrackingNumberException, InvalidTrackingNumberException {
 
         TrackingNumber trackingNumber = new TrackingNumber();
-        trackingNumber.setNumber(serviceUtil.generateTrackingNumber());
+        trackingNumber.setNumber(
+                serviceUtil.generateTrackingNumber(
+                        originCountryId, destinationCountryId, customerId));
         trackingNumber.setCreatedAt(serviceUtil.generateDate(new Date()));
         return trackingNumber;
     }

@@ -28,22 +28,26 @@ public class WebValidator {
                 || destinationCountryId.length() != 2) {
             message.setValid(false);
             message.setMessage("invalid destinationCountryId: " + destinationCountryId);
-        } else if (weight == null || weight < 0 || !isValidWeight(weight)) {
-            message.setValid(false);
-            message.setMessage("invalid weight: " + weight);
-        } else if (createdAt == null || createdAt.isEmpty() || !isValidDate(createdAt)) {
+        } /*else if (weight == null || weight < 0 || !isValidWeight(weight)) {
+              message.setValid(false);
+              message.setMessage("invalid weight: " + weight);
+          } */
+        /*else if (createdAt == null || createdAt.isEmpty() || !isValidDate(createdAt)) {
             message.setValid(false);
             message.setMessage("invalid createdAt: " + createdAt);
-        } else if (customerId == null || customerId.isEmpty() || customerId.length() > 36) {
+        }*/ else if (customerId == null
+                || customerId.isEmpty()
+                || customerId.length() > 36) {
             message.setValid(false);
             message.setMessage("invalid customerId: " + customerId);
-        } else if (customerName == null || customerName.isEmpty() || customerName.length() > 50) {
-            message.setValid(false);
-            message.setMessage("invalid customerName: " + customerName);
-        } else if (customerSlug == null || customerSlug.isEmpty() || customerSlug.length() > 50) {
+        } /*else if (customerName == null || customerName.isEmpty() || customerName.length() > 50) {
+              message.setValid(false);
+              message.setMessage("invalid customerName: " + customerName);
+          } */
+        /*else if (customerSlug == null || customerSlug.isEmpty() || customerSlug.length() > 50) {
             message.setValid(false);
             message.setMessage("invalid customerSlug: " + customerSlug);
-        } else {
+        } */ else {
             message.setValid(true);
             message.setMessage("valid request");
         }

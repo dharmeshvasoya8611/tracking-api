@@ -1,6 +1,8 @@
 package com.tracking.service;
 
 import com.tracking.service.dao.TrackingServiceDAO;
+import com.tracking.service.exception.InvalidTrackingNumberException;
+import com.tracking.service.exception.TrackingNumberException;
 import com.tracking.service.model.TrackingNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,8 @@ public class TrackingService {
             String createdAt,
             String customerId,
             String customerName,
-            String customerSlug) {
+            String customerSlug)
+            throws TrackingNumberException, InvalidTrackingNumberException {
         return trackingServiceDAO.nextTrackingNumber(
                 originCountryId,
                 destinationCountryId,

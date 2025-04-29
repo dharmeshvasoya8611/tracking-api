@@ -28,3 +28,15 @@ API Auth
 	
 Detailed Info
 	Review the "tracking-api_doc.docx"
+	
+Logic to generate 16 digit unique tracking number
+
+	-- originCountryId + current day + destinationCountryId + last two digit of host ip address + last four digit of customerId + last four digit of current ms time (System.currentTimeMillis())
+	-- convert generated tracking number string to upper case
+	-- Regex: "^[A-Z0-9]{16}$"
+	
+API Mandatory Query Params
+	-- originCountryId
+	-- destinationCountryId
+	-- customerId
+	

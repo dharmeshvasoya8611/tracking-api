@@ -16,7 +16,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Component
 public class TrackingApiControllerImpl implements TrackingApi {
@@ -35,21 +34,13 @@ public class TrackingApiControllerImpl implements TrackingApi {
 
     @Override
     public ResponseEntity nextTrackingNumber(
-            @NotNull @Valid @RequestParam(value = "origin_country_id", name = "origin_country_id")
-                    String originCountryId,
-            @NotNull
-                    @Valid
-                    @RequestParam(value = "destination_country_id", name = "destination_country_id")
-                    String destinationCountryId,
-            @NotNull @Valid @RequestParam(value = "weight", name = "weight") Double weight,
-            @NotNull @Valid @RequestParam(value = "created_at", name = "created_at")
-                    String createdAt,
-            @NotNull @Valid @RequestParam(value = "customer_id", name = "customer_id")
-                    String customerId,
-            @NotNull @Valid @RequestParam(value = "customer_name", name = "customer_name")
-                    String customerName,
-            @NotNull @Valid @RequestParam(value = "customer_slug", name = "customer_slug")
-                    String customerSlug) {
+            @NotNull @Valid String originCountryId,
+            @NotNull @Valid String destinationCountryId,
+            @NotNull @Valid String customerId,
+            @Valid Double weight,
+            @Valid String createdAt,
+            @Valid String customerName,
+            @Valid String customerSlug) {
 
         LOG.debug("nextTrackingNumber() started");
         try {

@@ -25,13 +25,13 @@ paths:
             type: string
         - in: query
           name: weight
-          required: true
+          required: false
           schema:
             format: double
             type: string
         - in: query
           name: created_at
-          required: true
+          required: false
           schema:
             type: string
         - in: query
@@ -41,12 +41,12 @@ paths:
             type: string
         - in: query
           name: customer_name
-          required: true
+          required: false
           schema:
             type: string
         - in: query
           name: customer_slug
-          required: true
+          required: false
           schema:
             type: string    
       responses:

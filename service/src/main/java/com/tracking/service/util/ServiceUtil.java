@@ -28,6 +28,13 @@ public class ServiceUtil {
         trackingNumber.append(destinationCountryId);
 
         String ip = getCurrentIPAddress();
+        
+        if(ip.contains(".") ) {
+        	ip = ip.replace(".", "0");
+        }
+        
+        ip = ip.substring(ip.length() - 2);
+        
         trackingNumber.append(ip.substring(ip.length() - 2));
 
         trackingNumber.append(customerId.substring(customerId.length() - 4));
